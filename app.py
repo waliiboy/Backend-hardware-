@@ -89,7 +89,7 @@ def addproduct():
     brand=request.form["brand"]
     description=request.form["description"]
     price=request.form["price"]
-    stock_quantity=request.form["stock_quantity"]
+
     product_photo=request.files["product_photo"]
 
     # 4.establish connection to database
@@ -99,10 +99,10 @@ def addproduct():
     cursor=connection.cursor()
 
     # 6.insert products 
-    sql="insert into hardware_products(product_name,category,brand,description,price,stock_quantity,product_photo) values(%s,%s,%s,%s,%s,%s,%s)"
+    sql="insert into hardware_products(product_name,category,brand,description,price,product_photo) values(%s,%s,%s,%s,%s,%s)"
 
     # 7.define your data from step3
-    data=(product_name,category,brand,description,price,stock_quantity,upload_photo(product_photo))
+    data=(product_name,category,brand,description,price,upload_photo(product_photo))
 
     # 8.execute
     cursor.execute(sql,data)
